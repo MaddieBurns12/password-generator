@@ -2,20 +2,31 @@
 
 
 
+var startGenerator = function() {
+  characterLength();
+}
+
 var characterLength = function() {
   var askCharacterLength = window.prompt("Insert a character length for password. Must be between 8 and 128 characters.");
+  console.log(characterLength);
+  if (askCharacterLength === null || askCharacterLength === "") {
+    window.alert("Please enter a valid password length.");
+    return characterLength();
+  }
   if (askCharacterLength < 8) {
-    window.prompt("Password must be greater than 8 characters.");
+    window.alert("Password must be greater than 8 characters.");
     return characterLength();
-  } if else (askCharacterLength > 128) {
-    window.prompt("Password must be shorter than 128 characters.");
+  } 
+  if (askCharacterLength > 128) {
+    window.alert("Password must be shorter than 128 characters.");
     return characterLength();
-  } else {
+  } 
+  if (askCharacterLength > 8 || askCharacterLength < 128) {
     window.prompt("Thank you!");
   }
 };
 
-
+startGenerator();
 
 
 
