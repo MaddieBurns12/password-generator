@@ -5,6 +5,24 @@ var upperCharacter = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L"
 var specialCharacter = ["(", "#", "@", "!", "*", "$"]
 var numericalCharacter = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 var passwordResult = ""
+var choice = []
+
+var generateFullPassword = function() {
+  var x = [];
+  if (lowerCharacterPrompt()) {
+    x.push(findLowercase())
+  }
+  if (upperCharacterPrompt()) {
+    x.push(findUppercase())
+  }
+  if (specialCharacterPrompt()) {
+    x.push(findSymbol())
+  }
+  if (numericalCharacterPrompt()) {
+    x.push(findNumber())
+  }
+  return x[Math.floor(Math.random() *x.length)];
+  };
 
 var passwordLength = function() {
   var passwordLengthAnswer = window.prompt("Insert a character length for password. Must be between 8 and 128 characters.");
@@ -19,15 +37,15 @@ var passwordLength = function() {
   if (isNaN(passwordLengthAnswer)) {
     passwordLength();
   }
-  if (8 < passwordLengthAnswer < 128) {
-    lowerCharacterPrompt();
-    return passwordLengthAnswer;
-  }
+  return passwordLengthAnswer
 }
 
 var lowerCharacterPrompt = function () {
   var lowerCharacterAnswer = window.confirm("Would you like to include lower case characters?");
-  upperCharacterPrompt();
+  if (lowerCharacterAnswer === true) {
+    choice = choice.concat(lowerCharacter);
+  }
+ 
   return lowerCharacterAnswer;
 }
 var upperCharacterPrompt = function () {
@@ -37,18 +55,27 @@ var upperCharacterPrompt = function () {
   //   lowerCharacterPrompt();
   // }
   // else {
-    numericalCharacterPrompt();
+    if (upperCharacterAnswer === true) {
+      choice = choice.concat(upperCharacter);
+    }
+    
     return upperCharacterAnswer;
   // }
 }
 var numericalCharacterPrompt = function() {
   var numericalCharacterAnswer =  window.confirm("Would you like to include numerical characters?");
-  specialCharacterPrompt();
+  if (numericalCharacterAnswer === true) {
+    choice = choice.concat(numericalCharacter);
+  }
+  
   return numericalCharacterAnswer;
 }
 var specialCharacterPrompt = function() {
   var specialCharacterAnswer = window.confirm("Would you like to include special characters?");
-  generateFullPassword();
+  if (specialCharacterAnswer === true) {
+    choice = choice.concat(specialCharacter);
+  }
+  
   return specialCharacterAnswer;
 }
 
@@ -68,34 +95,27 @@ var findSymbol = function() {
   return specialCharacter[Math.floor(math.random() * specialCharacter.length)]
 }
 
-function generatePassword() {
+ function generatePassword() {
+  
+
   passwordLength();
   var length = passwordLength();
   let password = '';
+
+  var islower = lowerCharacterPrompt();
+  var isupper = upperCharacterPrompt();
+  var isspecial = specialCharacterPrompt();
+  var isnumber = numericalCharacterPrompt();
+
+  if (!islower && !isupper && !isspecial && !isnumber) {
+    window.alert("You must select at least one kind of character!")
+    generatePassword();
+  }
   for(i=0; i<length; i++) {
     var fullPassword = generateFullPassword();
     password += fullPassword
   }
-  
-}
-var generateFullPassword = function() {
-  var x = [];
-  if (lowerCharacterPrompt()) {
-    x.push(findLowercase())
-  }
-  if (upperCharacterPrompt()) {
-    x.push(findUppercase())
-  }
-  if (specialCharacterPrompt()) {
-    x.push(findSymbol())
-  }
-  if (numericalCharacterPrompt()) {
-    x.push(findNumber())
-  }
-
-  return x[Math.floor(Math.random() *x.length)];
-  };
-
+};
 // Get references to the #generate element
 
 
