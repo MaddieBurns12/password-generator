@@ -32,14 +32,14 @@ var lowerCharacterPrompt = function () {
 }
 var upperCharacterPrompt = function () {
   var upperCharacterAnswer = window.confirm("Would you like to include upper case characters?");
-  if (lowerCharacterPrompt === false && upperCharacterPrompt === false) {
-    window.alert("You must have either uppercase characters or lowercase characters in your password. Please try again!");
-    lowerCharacterPrompt();
-  }
-  else {
+  // if (lowerCharacterPrompt === false && upperCharacterPrompt === false) {
+  //   window.alert("You must have either uppercase characters or lowercase characters in your password. Please try again!");
+  //   lowerCharacterPrompt();
+  // }
+  // else {
     numericalCharacterPrompt();
     return upperCharacterAnswer;
-  }
+  // }
 }
 var numericalCharacterPrompt = function() {
   var numericalCharacterAnswer =  window.confirm("Would you like to include numerical characters?");
@@ -56,15 +56,15 @@ var findLowercase = function() {
   return lowerCharacter[Math.floor(Math.random() * lowerCharacter.length)];
 }
 
-var getUppercase = function() {
+var findUppercase = function() {
   return upperCharacter[Math.floor(math.random() * upperCharacter.length)]
 }
 
-var getNumber = function() {
+var findNumber = function() {
   return numericalCharacter[Math.floor(math.random() * numericalCharacter.length)]
 }
 
-var getSymbol = function() {
+var findSymbol = function() {
   return specialCharacter[Math.floor(math.random() * specialCharacter.length)]
 }
 
@@ -87,10 +87,10 @@ var generateFullPassword = function() {
     x.push(findUppercase())
   }
   if (specialCharacterPrompt()) {
-    x.push(getSymbol())
+    x.push(findSymbol())
   }
   if (numericalCharacterPrompt()) {
-    x.push(getNumber())
+    x.push(findNumber())
   }
 
   return x[Math.floor(Math.random() *x.length)];
