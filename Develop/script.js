@@ -1,37 +1,103 @@
-// Assignment code here
+// variables for function to choose from 
+var generateBtn = document.querySelector("#generate");
+var lowerCharacter = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+var upperCharacter = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+var specialCharacter = ["(", "#", "@", "!", "*", "$"]
+var numericalCharacter = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+var passwordResult = ""
 
-
-
-var startGenerator = function() {
-  characterLength();
+var passwordLength = function() {
+  var passwordLengthAnswer = window.prompt("Insert a character length for password. Must be between 8 and 128 characters.");
+  if (passwordLengthAnswer < 8) {
+    window.alert("Password must be greater than 8 characters.");
+    passwordLength();
+  }
+  if (passwordLengthAnswer > 128) {
+    window.alert("Password must be less than 128 characters.");
+    passwordLength();
+  }
+  if (isNaN(passwordLengthAnswer)) {
+    passwordLength();
+  }
+  if (8 < passwordLengthAnswer < 128) {
+    lowerCharacterPrompt();
+    return passwordLengthAnswer;
+  }
 }
 
-var characterLength = function() {
-  var askCharacterLength = window.prompt("Insert a character length for password. Must be between 8 and 128 characters.");
-  console.log(characterLength);
-  if (askCharacterLength === null || askCharacterLength === "") {
-    window.alert("Please enter a valid password length.");
-    return characterLength();
+var lowerCharacterPrompt = function () {
+  var lowerCharacterAnswer = window.confirm("Would you like to include lower case characters?");
+  upperCharacterPrompt();
+  return lowerCharacterAnswer;
+}
+var upperCharacterPrompt = function () {
+  var upperCharacterAnswer = window.confirm("Would you like to include upper case characters?");
+  if (lowerCharacterPrompt === false && upperCharacterPrompt === false) {
+    window.alert("You must have either uppercase characters or lowercase characters in your password. Please try again!");
+    lowerCharacterPrompt();
   }
-  if (askCharacterLength < 8) {
-    window.alert("Password must be greater than 8 characters.");
-    return characterLength();
-  } 
-  if (askCharacterLength > 128) {
-    window.alert("Password must be shorter than 128 characters.");
-    return characterLength();
-  } 
-  if (askCharacterLength > 8 || askCharacterLength < 128) {
-    window.prompt("Thank you!");
+  else {
+    numericalCharacterPrompt();
+    return upperCharacterAnswer;
   }
-};
+}
+var numericalCharacterPrompt = function() {
+  var numericalCharacterAnswer =  window.confirm("Would you like to include numerical characters?");
+  specialCharacterPrompt();
+  return numericalCharacterAnswer;
+}
+var specialCharacterPrompt = function() {
+  var specialCharacterAnswer = window.confirm("Would you like to include special characters?");
+  generateFullPassword();
+  return specialCharacterAnswer;
+}
 
-startGenerator();
+var findLowercase = function() {
+  return lowerCharacter[Math.floor(Math.random() * lowerCharacter.length)];
+}
 
+var getUppercase = function() {
+  return upperCharacter[Math.floor(math.random() * upperCharacter.length)]
+}
 
+var getNumber = function() {
+  return numericalCharacter[Math.floor(math.random() * numericalCharacter.length)]
+}
+
+var getSymbol = function() {
+  return specialCharacter[Math.floor(math.random() * specialCharacter.length)]
+}
+
+function generatePassword() {
+  passwordLength();
+  var length = passwordLength();
+  let password = '';
+  for(i=0; i<length; i++) {
+    var fullPassword = generateFullPassword();
+    password += fullPassword
+  }
+  
+}
+var generateFullPassword = function() {
+  var x = [];
+  if (lowerCharacterPrompt()) {
+    x.push(findLowercase())
+  }
+  if (upperCharacterPrompt()) {
+    x.push(findUppercase())
+  }
+  if (specialCharacterPrompt()) {
+    x.push(getSymbol())
+  }
+  if (numericalCharacterPrompt()) {
+    x.push(getNumber())
+  }
+
+  return x[Math.floor(Math.random() *x.length)];
+  };
 
 // Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
+
 
 // Write password to the #password input
 function writePassword() {
