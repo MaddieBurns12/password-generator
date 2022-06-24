@@ -15,4 +15,4 @@ Given a mockup of a password generator and a description of how it would work, I
     Screenshot of website: 
     
 
-    ![screenshot-readme](./assets/images/Screenshot%202022-06-24%20194942.png)
+![screenshot-readme](./assets/images/Screenshot%202022-06-24%20194942.png)
