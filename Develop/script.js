@@ -8,33 +8,21 @@ var passwordResult = ""
 var choice = []
 
 var generateFullPassword = function() {
-  var x = [];
-  if (lowerCharacterPrompt()) {
-    x.push(findLowercase())
-  }
-  if (upperCharacterPrompt()) {
-    x.push(findUppercase())
-  }
-  if (specialCharacterPrompt()) {
-    x.push(findSymbol())
-  }
-  if (numericalCharacterPrompt()) {
-    x.push(findNumber())
-  }
-  return x[Math.floor(Math.random() *x.length)];
+  return choice[Math.floor(Math.random() * choice.length)];
   };
 
 var passwordLength = function() {
   var passwordLengthAnswer = window.prompt("Insert a character length for password. Must be between 8 and 128 characters.");
+  if (isNaN(passwordLengthAnswer) || passwordLengthAnswer === "" || passwordLengthAnswer === null) {
+    window.alert("Please enter a valid password.")
+    passwordLength();
+  }
   if (passwordLengthAnswer < 8) {
     window.alert("Password must be greater than 8 characters.");
     passwordLength();
   }
   if (passwordLengthAnswer > 128) {
     window.alert("Password must be less than 128 characters.");
-    passwordLength();
-  }
-  if (isNaN(passwordLengthAnswer)) {
     passwordLength();
   }
   return passwordLengthAnswer
@@ -50,17 +38,10 @@ var lowerCharacterPrompt = function () {
 }
 var upperCharacterPrompt = function () {
   var upperCharacterAnswer = window.confirm("Would you like to include upper case characters?");
-  // if (lowerCharacterPrompt === false && upperCharacterPrompt === false) {
-  //   window.alert("You must have either uppercase characters or lowercase characters in your password. Please try again!");
-  //   lowerCharacterPrompt();
-  // }
-  // else {
     if (upperCharacterAnswer === true) {
       choice = choice.concat(upperCharacter);
     }
-    
     return upperCharacterAnswer;
-  // }
 }
 var numericalCharacterPrompt = function() {
   var numericalCharacterAnswer =  window.confirm("Would you like to include numerical characters?");
@@ -96,12 +77,8 @@ var findSymbol = function() {
 }
 
  function generatePassword() {
-  
-
-  passwordLength();
   var length = passwordLength();
-  let password = '';
-
+  var password = '';
   var islower = lowerCharacterPrompt();
   var isupper = upperCharacterPrompt();
   var isspecial = specialCharacterPrompt();
@@ -115,7 +92,9 @@ var findSymbol = function() {
     var fullPassword = generateFullPassword();
     password += fullPassword
   }
+  return password
 };
+
 // Get references to the #generate element
 
 
