@@ -1,4 +1,4 @@
-# Password Generator Starter Code
+Description:
 
 Given a mockup of a password generator and a description of how it would work, I modified the JavaScript file in order to meet the requirements. This was accomplished by:
 
@@ -8,11 +8,12 @@ Given a mockup of a password generator and a description of how it would work, I
     4. Utilizing console.log, the debugger tool, and Chrome DevTools to ensure the variables and functions are working properly until I got the code where I wanted it to be. 
 
 
-    Deployable link: https://maddieburns12.github.io/password-generator/
+ Deployable link: https://maddieburns12.github.io/password-generator/
 
-    Repository link: https://github.com/MaddieBurns12/password-generator
+Repository link: https://github.com/MaddieBurns12/password-generator
 
-    Screenshot of website: 
+    
+Screenshot of website: 
     
 
 ![screenshot-readme](./assets/images/Screenshot%202022-06-24%20194942.png)
