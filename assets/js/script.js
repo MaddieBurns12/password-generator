@@ -33,13 +33,19 @@ var lowerCharacterPrompt = function () {
   if (lowerCharacterAnswer === true) {
     choice = choice.concat(lowerCharacter);
   }
- 
+  else {
+    choice = choice.concat(!lowerCharacterAnswer)
+  }
   return lowerCharacterAnswer;
+
 }
 var upperCharacterPrompt = function () {
   var upperCharacterAnswer = window.confirm("Would you like to include upper case characters?");
     if (upperCharacterAnswer === true) {
       choice = choice.concat(upperCharacter);
+    }
+    else {
+      choice = choice.concat(!upperCharacterAnswer)
     }
     return upperCharacterAnswer;
 }
@@ -48,7 +54,9 @@ var numericalCharacterPrompt = function() {
   if (numericalCharacterAnswer === true) {
     choice = choice.concat(numericalCharacter);
   }
-  
+  else {
+    choice = choice.concat(!numericalCharacterAnswer)
+  }
   return numericalCharacterAnswer;
 }
 var specialCharacterPrompt = function() {
@@ -56,7 +64,9 @@ var specialCharacterPrompt = function() {
   if (specialCharacterAnswer === true) {
     choice = choice.concat(specialCharacter);
   }
-  
+  else {
+    choice = choice.concat(!specialCharacterAnswer)
+  }
   return specialCharacterAnswer;
 }
 
